@@ -83,6 +83,7 @@ public class ApiManager extends AsyncTask<String, Void, String> {
             }
         }
     }
+    
 
     public ArrayList<PCR> parse(final String json) {
         try {
