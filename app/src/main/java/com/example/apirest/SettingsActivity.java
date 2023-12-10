@@ -1,33 +1,42 @@
 package com.example.apirest;
 
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.preference.PreferenceManager;
 
-import com.example.apirest.databinding.UserSettingsBinding;
+import com.example.apirest.databinding.ActivitySettingsBinding;
 
-public class UserSettings extends AppCompatActivity {
-    private UserSettingsBinding binding;
+public class SettingsActivity extends AppCompatActivity {
+    private ActivitySettingsBinding binding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        binding = UserSettingsBinding.inflate(getLayoutInflater());
+        binding = ActivitySettingsBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         //setContentView(R.layout.user_settings);
+
+
+        binding.buttonDeco.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Log.v("UserSettings", "DECONNEXION CLICK");
+                Param.getInstance().setToken("");
+                Intent intent = new Intent(SettingsActivity.this, LoginActivity.class);
+                startActivity(intent);
+            }
+        });
 
 
         binding.bottomContainer.btnHome.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Log.v("UserSettings", "HOME CLICK");
-                Intent intent = new Intent(UserSettings.this, UserMain.class);
+                Intent intent = new Intent(SettingsActivity.this, UserMain.class);
                 startActivity(intent);
             }
         });
@@ -36,7 +45,7 @@ public class UserSettings extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Log.v("UserSettings", "ADD CLICK");
-                Intent intent = new Intent(UserSettings.this, AdminEditPcr.class);
+                Intent intent = new Intent(SettingsActivity.this, AdminEditPcr.class);
                 startActivity(intent);
             }
         });
@@ -45,7 +54,7 @@ public class UserSettings extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Log.v("UserSettings", "SETT CLICK");
-                Intent intent = new Intent(UserSettings.this, UserSettings.class);
+                Intent intent = new Intent(SettingsActivity.this, SettingsActivity.class);
                 startActivity(intent);
             }
         });

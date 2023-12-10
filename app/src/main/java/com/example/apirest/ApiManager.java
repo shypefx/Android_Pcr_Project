@@ -20,10 +20,13 @@ import java.net.URLEncoder;
 import java.util.ArrayList;
 
 public class ApiManager extends AsyncTask<String, Void, String> {
+
+
     private final static String URL = "https://api.munier.me/jwt/";
     private JSONObject jsonObj = null;
 
     private String action = "pcr";
+
 
     @Override
     protected String doInBackground(String... strings) {
@@ -38,7 +41,7 @@ public class ApiManager extends AsyncTask<String, Void, String> {
     }
 
     public String get(String methode) throws IOException, JSONException {
-        String url = URL+action+"/";
+        String url = URL + action;
         InputStream is = null;
         String token = Param.getInstance().getToken();
         String parameters = "";
@@ -83,14 +86,27 @@ public class ApiManager extends AsyncTask<String, Void, String> {
             }
         }
     }
-    
+
 
     public ArrayList<PCR> parse(final String json) {
+        return parse(json, -1);
+    }
+
+    public ArrayList<PCR> parse(final String json, int userId) {
         try {
             final ArrayList products = new ArrayList<>();
             final JSONArray jProductArray = new JSONArray(json);
             for (int i = 0; i < jProductArray.length(); i++) {
-                products.add(new PCR(jProductArray.optJSONObject(i)));
+                final JSONObject jProduct = jProductArray.optJSONObject(i);
+                if(userId > 0){
+                    Log.v("Parse","data : "+ jProduct.toString());
+                    if (jProduct.optInt("id_user") == userId) {
+                        products.add(new PCR(jProduct));
+                    }
+                }else{
+                    products.add(new PCR(jProduct));
+                }
+
             }
             return products;
         } catch (JSONException e) {
@@ -98,6 +114,7 @@ public class ApiManager extends AsyncTask<String, Void, String> {
         }
         return null;
     }
+
     private String readIt(InputStream is) throws IOException {
         BufferedReader r = new BufferedReader(new InputStreamReader(is));
         StringBuilder response = new StringBuilder();
@@ -117,5 +134,7 @@ public class ApiManager extends AsyncTask<String, Void, String> {
     protected void onPostExecute(String s) {
         super.onPostExecute(s);
     }
+
+
 
 }

@@ -3,6 +3,7 @@ package com.example.apirest;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -68,11 +69,7 @@ public class LoginActivity extends AppCompatActivity {
                 Users user = usersMap.get(enteredEmail);
 
                 if (user != null && enteredPassword.equals(user.getPassword())) {
-                    Log.v("onClick","resu : " + enteredEmail);
-                    Log.v("onClick","data : " + user.getEmail());
-                    Log.v("onClick","resu : " + enteredPassword);
-                    Log.v("onClick","data : " + user.getPassword());
-                    Log.v("onClick","role : " + user.getRole());
+
                     if (user.getRole().equals("user")) {
                         Param.getInstance().setToken(token);
                         Intent intent = new Intent(LoginActivity.this, UserMain.class);

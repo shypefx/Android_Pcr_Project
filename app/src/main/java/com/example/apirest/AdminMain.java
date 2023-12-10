@@ -2,6 +2,7 @@ package com.example.apirest;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
@@ -23,7 +24,7 @@ public class AdminMain extends AppCompatActivity {
         binding = AdminMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        ArrayList<PCR> listData = getListData();
+        ArrayList<PCR> listData = getListData(-1);
         final ListView listView = (ListView) findViewById(R.id.listView);
         listView.setAdapter(new CustomListAdapter(this, listData));
 
@@ -49,16 +50,38 @@ public class AdminMain extends AppCompatActivity {
             }
         });
 
+        binding.btnHome.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(AdminMain.this, AdminMain.class);
+                startActivity(intent);
+            }
+        });
+
+        binding.btnSettings.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(AdminMain.this, SettingsActivity.class);
+                startActivity(intent);
+            }
+        });
+
     }
 
-    public ArrayList<PCR> getListData(){
+    public ArrayList<PCR> getListData(int user_id){
         try{
             ApiManager connectionRest = new ApiManager();
             connectionRest.execute("GET");
             String listJsonObjs = connectionRest.get();
             if(listJsonObjs != null) {
-                connectionRest.onPostExecute(" list of object : "+ listJsonObjs);
-                return connectionRest.parse(listJsonObjs);
+                if(user_id > 0){
+                    connectionRest.onPostExecute(" list of object : "+ listJsonObjs);
+                    return connectionRest.parse(listJsonObjs, user_id);
+                }else{
+                    connectionRest.onPostExecute(" list of object : "+ listJsonObjs);
+                    return connectionRest.parse(listJsonObjs);
+                }
+
             }
         } catch (InterruptedException e) {
             e.printStackTrace();

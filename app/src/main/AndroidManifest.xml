@@ -19,7 +19,7 @@
             android:name=".UserMain"
             android:exported="false" />
         <activity
-            android:name=".UserSettings"
+            android:name=".SettingsActivity"
             android:exported="false" />
         <activity
             android:name=".AdminEditPcr"
