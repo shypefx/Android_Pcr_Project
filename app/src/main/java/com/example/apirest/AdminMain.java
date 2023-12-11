@@ -1,6 +1,7 @@
 package com.example.apirest;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -16,15 +17,22 @@ import java.util.concurrent.ExecutionException;
 
 public class AdminMain extends AppCompatActivity {
     private AdminMainBinding binding;
+    private int pharmaId;
+    private String type_role;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        SharedPreferences sharedPreferences = getSharedPreferences("my_prefs", MODE_PRIVATE);
+        pharmaId = sharedPreferences.getInt("id_pharmacie", -1);
+        type_role = sharedPreferences.getString("role", "");
+        Log.v("adminmain","id_pharmacie = "+ pharmaId);
+
         binding = AdminMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        ArrayList<PCR> listData = getListData(-1);
+        ArrayList<PCR> listData = getListData(pharmaId);
         final ListView listView = (ListView) findViewById(R.id.listView);
         listView.setAdapter(new CustomListAdapter(this, listData));
 
@@ -68,19 +76,14 @@ public class AdminMain extends AppCompatActivity {
 
     }
 
-    public ArrayList<PCR> getListData(int user_id){
+    public ArrayList<PCR> getListData(int id){
         try{
             ApiManager connectionRest = new ApiManager();
             connectionRest.execute("GET");
             String listJsonObjs = connectionRest.get();
             if(listJsonObjs != null) {
-                if(user_id > 0){
                     connectionRest.onPostExecute(" list of object : "+ listJsonObjs);
-                    return connectionRest.parse(listJsonObjs, user_id);
-                }else{
-                    connectionRest.onPostExecute(" list of object : "+ listJsonObjs);
-                    return connectionRest.parse(listJsonObjs);
-                }
+                    return connectionRest.parse(listJsonObjs, type_role, id);
 
             }
         } catch (InterruptedException e) {

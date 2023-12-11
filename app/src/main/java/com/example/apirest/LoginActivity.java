@@ -71,6 +71,8 @@ public class LoginActivity extends AppCompatActivity {
                 SharedPreferences sharedPreferences = getSharedPreferences("my_prefs", MODE_PRIVATE);
                 SharedPreferences.Editor editor = sharedPreferences.edit();
                 editor.putInt("id_user", user.getId_user());
+                editor.putInt("id_pharmacie", user.getId_pharmacie());
+                editor.putString("role", user.getRole());
                 editor.apply();
                 if (user != null && enteredPassword.equals(user.getPassword())) {
 

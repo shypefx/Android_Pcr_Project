@@ -87,23 +87,23 @@ public class ApiManager extends AsyncTask<String, Void, String> {
     }
 
 
-    public ArrayList<PCR> parse(final String json) {
-        return parse(json, -1);
-    }
 
-    public ArrayList<PCR> parse(final String json, int userId) {
+
+    public ArrayList<PCR> parse(final String json, String role, int id) {
         try {
             final ArrayList products = new ArrayList<>();
             final JSONArray jProductArray = new JSONArray(json);
             for (int i = 0; i < jProductArray.length(); i++) {
                 final JSONObject jProduct = jProductArray.optJSONObject(i);
-                if(userId > 0){
+                if(role.equals("user")){
                     Log.v("Parse","data : "+ jProduct.toString());
-                    if (jProduct.optInt("id_user") == userId) {
+                    if (jProduct.optInt("id_user") == id) {
                         products.add(new PCR(jProduct));
                     }
                 }else{
-                    products.add(new PCR(jProduct));
+                    if (jProduct.optInt("id_pharmacie") == id) {
+                        products.add(new PCR(jProduct));
+                    }
                 }
 
             }

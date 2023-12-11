@@ -5,31 +5,29 @@ import org.json.JSONObject;
 
 public class Users {
     private int id_user;
+    private int id_pharmacie;
     private String role;
     private String nom;
     private String prenom;
     private String email;
     private String password;
-    private int id_pcr;
-    private String statut;
-    private String date;
 
     public Users(JSONObject jsonObject) {
         id_user = jsonObject.optInt("id_user");
+        id_pharmacie = jsonObject.optInt("id_pharmacie");
         role = jsonObject.optString("role");
         nom = jsonObject.optString("nom");
         prenom = jsonObject.optString("prenom");
         email = jsonObject.optString("email");
         password = jsonObject.optString("password");
-        id_pcr = jsonObject.optInt("id_pcr");
-        statut = jsonObject.optString("statut");
-        date = jsonObject.optString("date");
     }
 
     public int getId_user() {
         return id_user;
     }
-
+    public int getId_pharmacie() {
+        return id_pharmacie;
+    }
     public void setId_user(int id_user) {
         this.id_user = id_user;
     }
@@ -74,29 +72,7 @@ public class Users {
         this.password = password;
     }
 
-    public int getId_pcr() {
-        return id_pcr;
-    }
 
-    public void setId_pcr(int id_pcr) {
-        this.id_pcr = id_pcr;
-    }
-
-    public String getStatut() {
-        return statut;
-    }
-
-    public void setStatut(String statut) {
-        this.statut = statut;
-    }
-
-    public String getDate() {
-        return date;
-    }
-
-    public void setDate(String date) {
-        this.date = date;
-    }
 
     public static Users fromJson(String jsonString) throws JSONException {
         return new Users(new JSONObject(jsonString));

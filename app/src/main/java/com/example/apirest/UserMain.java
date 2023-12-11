@@ -19,6 +19,7 @@ import java.util.concurrent.ExecutionException;
 public class UserMain extends AppCompatActivity {
     private UserMainBinding binding;
     private int userId;
+    private String type_role;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,6 +27,7 @@ public class UserMain extends AppCompatActivity {
 
         SharedPreferences sharedPreferences = getSharedPreferences("my_prefs", MODE_PRIVATE);
         userId = sharedPreferences.getInt("id_user", -1);
+        type_role = sharedPreferences.getString("role", "");
         Log.v("usermain","id_user = "+ userId);
 
         binding = UserMainBinding.inflate(getLayoutInflater());
@@ -70,13 +72,8 @@ public class UserMain extends AppCompatActivity {
             String listJsonObjs = connectionRest.get();
             Log.v("listjson =","data : "+listJsonObjs.toString());
             if(listJsonObjs != null) {
-                if(user_id > 0){
                     connectionRest.onPostExecute(" list of object : "+ listJsonObjs.toString());
-                    return connectionRest.parse(listJsonObjs.toString(), user_id);
-                }else{
-                    connectionRest.onPostExecute(" list of object : "+ listJsonObjs.toString());
-                    return connectionRest.parse(listJsonObjs.toString());
-                }
+                    return connectionRest.parse(listJsonObjs.toString(), type_role, user_id);
 
             }
         } catch (InterruptedException e) {
