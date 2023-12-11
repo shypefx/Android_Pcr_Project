@@ -28,9 +28,9 @@ public class CustomListAdapter extends BaseAdapter {
             convertView = layoutInflater.inflate(R.layout.pcr_custom_list_view, null);
             holder = new ViewHolder();
             holder.id = (TextView) convertView.findViewById(R.id.textId);
-            holder.name = (TextView) convertView.findViewById(R.id.textIdPcr);
-            holder.type = (TextView) convertView.findViewById(R.id.textStatut);
-            holder.carburant = (TextView) convertView.findViewById(R.id.textDate);
+            holder.id_pharmacie = (TextView) convertView.findViewById(R.id.textIdPcr);
+            holder.statut = (TextView) convertView.findViewById(R.id.textStatut);
+            holder.date = (TextView) convertView.findViewById(R.id.textDate);
             convertView.setTag(holder);
         } else {
             holder = (ViewHolder) convertView.getTag();
@@ -38,22 +38,22 @@ public class CustomListAdapter extends BaseAdapter {
         }
 
         if(position % 2 == 0){
-            convertView.setBackgroundColor(Color.rgb(150,245,170));
+            convertView.setBackgroundColor(Color.rgb(15,200,28));
         }
 
-        PCR voiture = this.listData.get(position);
-        holder.id.setText(""+voiture.getId());
-        holder.name.setText(voiture.getId_pcr());
-        holder.type.setText(voiture.getStatut());
-        holder.carburant.setText(voiture.getDate());
+        PCR test_pcr = this.listData.get(position);
+        holder.id.setText(""+test_pcr.getId_pcr());
+        holder.id_pharmacie.setText(test_pcr.getId_pharmacie());
+        holder.statut.setText(test_pcr.getStatut());
+        holder.date.setText(test_pcr.getDate());
         return convertView;
     }
 
     static class ViewHolder {
         TextView id;
-        TextView name;
-        TextView type;
-        TextView carburant;
+        TextView id_pharmacie;
+        TextView statut;
+        TextView date;
         TextView price;
     }
 

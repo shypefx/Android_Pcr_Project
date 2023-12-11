@@ -34,8 +34,8 @@ public class AdminMain extends AppCompatActivity {
                 Object o = listView.getItemAtPosition(position);
                 PCR upload = (PCR) o;
                 Intent intent = new Intent(AdminMain.this, AdminEditPcr.class);
-                intent.putExtra("id", upload.getId());
                 intent.putExtra("id_pcr", upload.getId_pcr());
+                intent.putExtra("id_pharmacie", upload.getId_pharmacie());
                 intent.putExtra("statut", upload.getStatut());
                 intent.putExtra("date", upload.getDate());
                 startActivity(intent);

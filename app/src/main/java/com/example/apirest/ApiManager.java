@@ -24,7 +24,6 @@ public class ApiManager extends AsyncTask<String, Void, String> {
 
     private final static String URL = "https://api.munier.me/jwt/";
     private JSONObject jsonObj = null;
-
     private String action = "pcr";
 
 
