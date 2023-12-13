@@ -22,6 +22,16 @@ public class Users {
         password = jsonObject.optString("password");
     }
 
+    public Users(int id_user, int id_pharmacie, String role, String nom, String prenom, String email, String password) {
+        this.id_user = id_user;
+        this.id_pharmacie = id_pharmacie;
+        this.role = role;
+        this.nom = nom;
+        this.prenom = prenom;
+        this.email = email;
+        this.password = password;
+    }
+
     public int getId_user() {
         return id_user;
     }
@@ -77,4 +87,17 @@ public class Users {
     public static Users fromJson(String jsonString) throws JSONException {
         return new Users(new JSONObject(jsonString));
     }
+
+    public JSONObject toJson() throws JSONException {
+        JSONObject jsonObject = new JSONObject();
+        jsonObject.put("id_user", id_user);
+        jsonObject.put("id_pharmacie", id_pharmacie);
+        jsonObject.put("role", role);
+        jsonObject.put("nom", nom);
+        jsonObject.put("prenom", prenom);
+        jsonObject.put("email", email);
+        jsonObject.put("password", password);
+        return jsonObject;
+    }
+
 }

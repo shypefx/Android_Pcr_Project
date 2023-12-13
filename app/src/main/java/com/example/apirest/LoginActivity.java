@@ -20,6 +20,8 @@ import java.util.HashMap;
 import java.util.concurrent.ExecutionException;
 
 public class LoginActivity extends AppCompatActivity {
+
+    private HashMap<String, Users> usersMap;
     private EditText userEmail;
     private EditText userPassword;
     private Button buttonLogin;
@@ -35,6 +37,7 @@ public class LoginActivity extends AppCompatActivity {
         userEmail = (EditText)findViewById(R.id.user_email);
         userPassword = (EditText)findViewById(R.id.user_password);
         buttonLogin = (Button)findViewById(R.id.button_login);
+        buttonRegister = (Button)findViewById(R.id.button_inscription);
 
         userEmail.setText("paul.eau@gmail.com");
         userPassword.setText("test123");
@@ -50,6 +53,11 @@ public class LoginActivity extends AppCompatActivity {
             connectionRest.execute("POST");
              token = connectionRest.get();
             Param.getInstance().setToken(token);
+            usersMap = new HashMap<>();
+            ArrayList<Users> usersList = getUsersList();
+            for (Users user : usersList) {
+                usersMap.put(user.getEmail(), user);
+            }
         }catch (ExecutionException | JSONException e){
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
@@ -59,11 +67,7 @@ public class LoginActivity extends AppCompatActivity {
         buttonLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                HashMap<String, Users> usersMap = new HashMap<>();
-                ArrayList<Users> usersList = getUsersList();
-                for (Users user : usersList) {
-                    usersMap.put(user.getEmail(), user);
-                }
+
                 String enteredEmail = userEmail.getText().toString();
                 String enteredPassword = userPassword.getText().toString();
                 Users user = usersMap.get(enteredEmail);
@@ -88,6 +92,14 @@ public class LoginActivity extends AppCompatActivity {
                 } else {
                     Toast.makeText(LoginActivity.this, "Invalid email or password", Toast.LENGTH_SHORT).show();
                 }
+            }
+        });
+
+        buttonRegister.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(LoginActivity.this, SignupActivity.class);
+                startActivity(intent);
             }
         });
 
