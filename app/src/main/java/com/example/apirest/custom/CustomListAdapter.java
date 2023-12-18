@@ -1,4 +1,4 @@
-package com.example.apirest;
+package com.example.apirest.custom;
 import android.content.Context;
 import android.graphics.Color;
 import android.util.Log;
@@ -8,15 +8,18 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
+import com.example.apirest.R;
+import com.example.apirest.classes.Pcr;
+
 import java.util.ArrayList;
 
 public class CustomListAdapter extends BaseAdapter {
 
-    private ArrayList<PCR> listData;
+    private ArrayList<Pcr> listData;
     private LayoutInflater layoutInflater;
     private Context context;
 
-    public CustomListAdapter(Context aContext, ArrayList<PCR> listData) {
+    public CustomListAdapter(Context aContext, ArrayList<Pcr> listData) {
         this.context = aContext;
         this.listData = listData;
         layoutInflater = LayoutInflater.from(aContext);
@@ -27,10 +30,10 @@ public class CustomListAdapter extends BaseAdapter {
         if (convertView == null) {
             convertView = layoutInflater.inflate(R.layout.pcr_custom_list_view, null);
             holder = new ViewHolder();
-            holder.id = (TextView) convertView.findViewById(R.id.textId);
-            holder.id_pharmacie = (TextView) convertView.findViewById(R.id.textIdPcr);
-            holder.statut = (TextView) convertView.findViewById(R.id.textStatut);
-            holder.date = (TextView) convertView.findViewById(R.id.textDate);
+            holder.id = (TextView) convertView.findViewById(R.id.textHeaderId);
+            holder.id_pharmacie = (TextView) convertView.findViewById(R.id.textHeaderIdPcr);
+            holder.statut = (TextView) convertView.findViewById(R.id.textHeaderStatut);
+            holder.date = (TextView) convertView.findViewById(R.id.textHeaderDate);
             convertView.setTag(holder);
         } else {
             holder = (ViewHolder) convertView.getTag();
@@ -38,12 +41,12 @@ public class CustomListAdapter extends BaseAdapter {
         }
 
         if(position % 2 == 0){
-            convertView.setBackgroundColor(Color.rgb(15,200,28));
+            convertView.setBackgroundColor(Color.rgb(220,220,220));
         }
 
-        PCR test_pcr = this.listData.get(position);
+        Pcr test_pcr = this.listData.get(position);
         holder.id.setText(""+test_pcr.getId_pcr());
-        holder.id_pharmacie.setText(test_pcr.getId_pharmacie());
+        holder.id_pharmacie.setText(""+test_pcr.getId_pharmacie());
         holder.statut.setText(test_pcr.getStatut());
         holder.date.setText(test_pcr.getDate());
         return convertView;

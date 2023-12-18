@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#FFFFFF"
-    tools:context=".AdminEditPcr">
+    tools:context=".admin.AdminEditPcr">
 
     <EditText
         android:id="@+id/title_create_pcr"
@@ -13,7 +13,7 @@
         android:layout_height="wrap_content"
         android:ems="10"
         android:inputType="text"
-        android:text="Update PCR"
+        android:text="Edit PCR"
         android:textColor="#000000"
         app:layout_constraintBottom_toTopOf="@+id/tableLayout"
         app:layout_constraintEnd_toEndOf="parent"
@@ -58,7 +58,7 @@
             android:layout_height="match_parent">
 
             <TextView
-                android:id="@+id/textview_name"
+                android:id="@+id/textview_pcr_id"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="ID_PCR"
@@ -66,6 +66,27 @@
 
             <EditText
                 android:id="@+id/id_pcr_edited"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:text=""
+                android:textSize="14sp" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/textview_pharmacie_id"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="ID_Pharmacie"
+                android:textSize="14sp" />
+
+            <EditText
+                android:id="@+id/id_pharmacie_edited"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:ems="10"

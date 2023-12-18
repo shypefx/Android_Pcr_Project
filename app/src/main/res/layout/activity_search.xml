@@ -1,0 +1,29 @@
+<!-- res/layout/activity_search_pcr.xml -->
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <EditText
+        android:id="@+id/editTextSearchPcr"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Enter PCR ID"
+        android:layout_marginTop="16dp"
+        android:layout_marginHorizontal="16dp"/>
+
+    <Button
+        android:id="@+id/btnSearchPcr"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Search"
+        android:layout_below="@id/editTextSearchPcr"
+        android:layout_marginTop="8dp"
+        android:layout_marginHorizontal="16dp"/>
+
+    <ListView
+        android:id="@+id/listViewPcr"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/btnSearchPcr"
+        android:layout_marginTop="8dp"/>
+</RelativeLayout>

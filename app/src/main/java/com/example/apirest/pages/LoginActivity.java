@@ -1,4 +1,4 @@
-package com.example.apirest;
+package com.example.apirest.pages;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -10,6 +10,13 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import com.example.apirest.api.ApiManager;
+import com.example.apirest.R;
+import com.example.apirest.admin.AdminMain;
+import com.example.apirest.classes.Param;
+import com.example.apirest.classes.Users;
+import com.example.apirest.user.UserMain;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -39,7 +46,7 @@ public class LoginActivity extends AppCompatActivity {
         buttonLogin = (Button)findViewById(R.id.button_login);
         buttonRegister = (Button)findViewById(R.id.button_inscription);
 
-        userEmail.setText("paul.eau@gmail.com");
+        userEmail.setText("j.j@com");
         userPassword.setText("test123");
 
         try{
@@ -56,6 +63,7 @@ public class LoginActivity extends AppCompatActivity {
             usersMap = new HashMap<>();
             ArrayList<Users> usersList = getUsersList();
             for (Users user : usersList) {
+                Log.v("UserLoging"," data : "+ user.toString());
                 usersMap.put(user.getEmail(), user);
             }
         }catch (ExecutionException | JSONException e){

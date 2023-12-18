@@ -1,0 +1,72 @@
+<!-- res/layout/activity_add_pcr.xml -->
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/title_add_pcr"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="16dp"
+        android:text="Add PCR"
+        android:textSize="24sp" />
+
+    <EditText
+        android:id="@+id/id_pcr_add"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/title_add_pcr"
+        android:layout_marginTop="16dp"
+        android:hint="ID PCR" />
+
+    <EditText
+        android:id="@+id/statut_pcr_add"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/id_pcr_add"
+        android:layout_marginTop="16dp"
+        android:hint="Statut" />
+
+    <EditText
+        android:id="@+id/date_pcr_add"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/statut_pcr_add"
+        android:layout_marginTop="16dp"
+        android:hint="Date" />
+
+    <EditText
+        android:id="@+id/user_id_pcr_add"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/date_pcr_add"
+        android:layout_marginTop="16dp"
+        android:hint="User ID" />
+
+    <EditText
+        android:id="@+id/pharmacie_id_pcr_add"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/user_id_pcr_add"
+        android:layout_marginTop="16dp"
+        android:hint="Pharmacie ID" />
+
+    <Button
+        android:id="@+id/button_cancel_add"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/pharmacie_id_pcr_add"
+        android:layout_marginTop="24dp"
+        android:text="Cancel" />
+
+    <Button
+        android:id="@+id/button_ok_add"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/button_cancel_add"
+        android:layout_marginTop="16dp"
+        android:text="OK" />
+
+</RelativeLayout>

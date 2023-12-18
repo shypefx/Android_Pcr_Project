@@ -1,8 +1,11 @@
-package com.example.apirest;
+package com.example.apirest.api;
 
 
 import android.os.AsyncTask;
 import android.util.Log;
+
+import com.example.apirest.classes.Pcr;
+import com.example.apirest.classes.Param;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -46,7 +49,7 @@ public class ApiManager extends AsyncTask<String, Void, String> {
         String parameters = "";
         Log.v("methode", methode);
         if(!methode.equals("POST")&&(jsonObj!=null)){
-            url += jsonObj.getInt("id");
+            url += "/"+ jsonObj.getInt("id");
         }
         if(jsonObj != null){
             if(methode.equals("PUT")){
@@ -89,7 +92,7 @@ public class ApiManager extends AsyncTask<String, Void, String> {
 
 
 
-    public ArrayList<PCR> parse(final String json, String role, int id) {
+    public ArrayList<Pcr> parse(final String json, String role, int id) {
         try {
             final ArrayList products = new ArrayList<>();
             final JSONArray jProductArray = new JSONArray(json);
@@ -98,11 +101,11 @@ public class ApiManager extends AsyncTask<String, Void, String> {
                 if(role.equals("user")){
                     Log.v("Parse","data : "+ jProduct.toString());
                     if (jProduct.optInt("id_user") == id) {
-                        products.add(new PCR(jProduct));
+                        products.add(new Pcr(jProduct));
                     }
                 }else{
                     if (jProduct.optInt("id_pharmacie") == id) {
-                        products.add(new PCR(jProduct));
+                        products.add(new Pcr(jProduct));
                     }
                 }
 
@@ -130,7 +133,7 @@ public class ApiManager extends AsyncTask<String, Void, String> {
 
     public void setAction(String monAction){ this.action = monAction;}
     @Override
-    protected void onPostExecute(String s) {
+    public void onPostExecute(String s) {
         super.onPostExecute(s);
     }
 

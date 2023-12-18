@@ -1,23 +1,21 @@
-package com.example.apirest;
+package com.example.apirest.pages;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Spinner;
-import android.widget.Toast;
+import android.widget.ImageButton;
 
-import org.json.JSONArray;
+import com.example.apirest.api.ApiManager;
+import com.example.apirest.R;
+import com.example.apirest.classes.Users;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ThreadLocalRandom;
 
@@ -25,7 +23,6 @@ public class SignupActivity extends AppCompatActivity {
     private EditText userEmail;
     private EditText userPassword;
     private Button buttonLogin;
-    private Button buttonRegister;
     private String token;
 
     @Override
@@ -33,6 +30,16 @@ public class SignupActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signup);
         Button btnRegister = findViewById(R.id.btn_register);
+        ImageButton btnBack = findViewById(R.id.iv_backButton);
+
+
+        btnBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(SignupActivity.this, LoginActivity.class);
+                startActivity(intent);
+            }
+        });
 
         btnRegister.setOnClickListener(new View.OnClickListener() {
             @Override

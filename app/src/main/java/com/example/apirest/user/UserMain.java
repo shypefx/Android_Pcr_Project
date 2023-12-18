@@ -1,4 +1,4 @@
-package com.example.apirest;
+package com.example.apirest.user;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -11,6 +11,12 @@ import android.view.View;
 
 import android.widget.ListView;
 
+import com.example.apirest.admin.AdminEditPcr;
+import com.example.apirest.api.ApiManager;
+import com.example.apirest.custom.CustomListAdapter;
+import com.example.apirest.R;
+import com.example.apirest.pages.SettingsActivity;
+import com.example.apirest.classes.Pcr;
 import com.example.apirest.databinding.UserMainBinding;
 
 import java.util.ArrayList;
@@ -33,7 +39,7 @@ public class UserMain extends AppCompatActivity {
         binding = UserMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        ArrayList<PCR> listData = getListData(userId);
+        ArrayList<Pcr> listData = getListData(userId);
         final ListView listView = (ListView) findViewById(R.id.listView);
         listView.setAdapter(new CustomListAdapter(this, listData));
 
@@ -65,7 +71,7 @@ public class UserMain extends AppCompatActivity {
 
     }
 
-    public ArrayList<PCR> getListData(int user_id) {
+    public ArrayList<Pcr> getListData(int user_id) {
         try {
             ApiManager connectionRest = new ApiManager();
             connectionRest.execute("GET");

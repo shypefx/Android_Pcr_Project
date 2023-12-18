@@ -1,4 +1,4 @@
-package com.example.apirest;
+package com.example.apirest.classes;
 
 public class Param {
     private String token;

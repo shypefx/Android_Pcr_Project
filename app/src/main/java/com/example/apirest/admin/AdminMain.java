@@ -1,4 +1,4 @@
-package com.example.apirest;
+package com.example.apirest.admin;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -10,6 +10,12 @@ import android.widget.ListView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.apirest.api.ApiManager;
+import com.example.apirest.custom.CustomListAdapter;
+import com.example.apirest.classes.Pcr;
+import com.example.apirest.R;
+import com.example.apirest.pages.SearchPcrActivity;
+import com.example.apirest.pages.SettingsActivity;
 import com.example.apirest.databinding.AdminMainBinding;
 
 import java.util.ArrayList;
@@ -32,7 +38,7 @@ public class AdminMain extends AppCompatActivity {
         binding = AdminMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        ArrayList<PCR> listData = getListData(pharmaId);
+        ArrayList<Pcr> listData = getListData(pharmaId);
         final ListView listView = (ListView) findViewById(R.id.listView);
         listView.setAdapter(new CustomListAdapter(this, listData));
 
@@ -40,25 +46,35 @@ public class AdminMain extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> a, View v, int position, long id) {
                 Object o = listView.getItemAtPosition(position);
-                PCR upload = (PCR) o;
+                Pcr upload = (Pcr) o;
                 Intent intent = new Intent(AdminMain.this, AdminEditPcr.class);
+                intent.putExtra("id", upload.getId());
                 intent.putExtra("id_pcr", upload.getId_pcr());
                 intent.putExtra("id_pharmacie", upload.getId_pharmacie());
+                intent.putExtra("id_user", upload.getId_user());
                 intent.putExtra("statut", upload.getStatut());
                 intent.putExtra("date", upload.getDate());
                 startActivity(intent);
             }
         });
 
-        binding.btnAdd.setOnClickListener(new View.OnClickListener() {
+        binding.bottomContainer.btnAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(AdminMain.this, AdminEditPcr.class);
+                Intent intent = new Intent(AdminMain.this, AdminAddPcrTest.class);
                 startActivity(intent);
             }
         });
 
-        binding.btnHome.setOnClickListener(new View.OnClickListener() {
+        binding.bottomContainer.btnSearch.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(AdminMain.this, SearchPcrActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        binding.bottomContainer.btnHome.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(AdminMain.this, AdminMain.class);
@@ -66,7 +82,7 @@ public class AdminMain extends AppCompatActivity {
             }
         });
 
-        binding.btnSettings.setOnClickListener(new View.OnClickListener() {
+        binding.bottomContainer.btnSettings.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(AdminMain.this, SettingsActivity.class);
@@ -76,7 +92,7 @@ public class AdminMain extends AppCompatActivity {
 
     }
 
-    public ArrayList<PCR> getListData(int id){
+    public ArrayList<Pcr> getListData(int id){
         try{
             ApiManager connectionRest = new ApiManager();
             connectionRest.execute("GET");

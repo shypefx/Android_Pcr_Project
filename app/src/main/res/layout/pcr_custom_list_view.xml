@@ -3,10 +3,10 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:maxHeight="45dp">
+    android:maxHeight="65dp">
 
     <TextView
-        android:id="@+id/textId"
+        android:id="@+id/textHeaderId"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -15,13 +15,14 @@
         android:layout_marginBottom="8dp"
         android:gravity="center_vertical|start"
         android:text="ID_PCR"
-        android:textSize="12sp"
+        android:textSize="14sp"
+        android:textColor="#FF5733"
         app:layout_constraintEnd_toStartOf="@+id/guideline1"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/textIdPcr"
+        android:id="@+id/textHeaderIdPcr"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
@@ -30,32 +31,35 @@
         android:gravity="center_vertical|start"
         android:text="ID_TEST"
         android:textSize="18sp"
+        android:textColor="#3498db"
         app:layout_constraintEnd_toStartOf="@+id/guideline2"
         app:layout_constraintStart_toEndOf="@+id/guideline1"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/textDate"
+        android:id="@+id/textHeaderDate"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
         android:text="DATE"
-        android:textSize="12sp"
+        android:textSize="14sp"
+        android:textColor="#27ae60"
         app:layout_constraintEnd_toStartOf="@+id/guideline3"
         app:layout_constraintStart_toEndOf="@+id/guideline2"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/textStatut"
+        android:id="@+id/textHeaderStatut"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="8dp"
         android:text="RESULTAT"
-        android:textSize="12sp"
+        android:textSize="14sp"
+        android:textColor="#8e44ad"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/guideline3"
         app:layout_constraintTop_toTopOf="parent" />
